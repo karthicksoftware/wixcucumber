@@ -10,13 +10,12 @@ public class HomePage extends PageObject{
 	
 	By getStarted = By.xpath("//div[@class='_3qwzM']//a[text()='Get Started'][1]");
 	
-	
 	public void openApplication() {
 		getDriver().get("https://www.wix.com");
 	}
 	
 	public void verifyGetStartedButton(){
-		Assert.assertTrue("Get started button is not found", element(getStarted).isCurrentlyVisible());
+		element(getStarted).shouldBeVisible();
 	}
 	
 	public void verifyPageTitle(String expectedTitle){

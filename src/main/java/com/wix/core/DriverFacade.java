@@ -4,14 +4,14 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.wix.runner.TestRunner;
+public class DriverFacade {
 
-public class DriverFacade extends TestRunner{
+	public static ThreadLocal<WebDriver> drivers = new ThreadLocal<WebDriver>();
+	private WebDriver driver = null;
 
-private WebDriver driver = null; 
-	
-	public DriverFacade() {
+	public void openBrowser() {
 		System.setProperty("webdriver.chrome.driver", "src/test/resources/Drivers/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
@@ -19,12 +19,24 @@ private WebDriver driver = null;
 		getDriver().manage().window().maximize();
 	}
 	
+	public void openFirefoxBrowser() {
+		System.setProperty("webdriver.gecko.driver", "src/test/resources/Drivers/geckodriver.exe");
+		driver = new FirefoxDriver();
+		driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+		setDriver(driver);
+		getDriver().manage().window().maximize();
+	}
+
 	public WebDriver getDriver() {
-		return driver;
+		return drivers.get();
 	}
 
 	protected void setDriver(WebDriver driver) {
-		this.driver = driver;
+		drivers.set(driver);
+	}
+	
+	public void closeBrowser() {
+		getDriver().close();
 	}
 
 }

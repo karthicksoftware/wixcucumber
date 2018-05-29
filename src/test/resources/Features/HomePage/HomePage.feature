@@ -1,9 +1,10 @@
-Feature: Automate Wix Application
+Feature: Validate wix homepage
 In order to provide some business value
 As a user
-I want to perform some simple action, but I commented then condition
+I want to perform some simple action
 
-Scenario: Validate user experience in home page of wix website
-Given the browser is successfully launched
+@Chrome
+Scenario: Validate the title of wix website
+Given the application is successfully launched
 When the user lands on the homepage
 Then the user should validate the current page title 'Free Website Builder | Create a Free Website | Wix.com'

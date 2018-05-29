@@ -11,7 +11,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/Features/HomePage", glue = { "com.wix.stepDefs" }, plugin = {
+@CucumberOptions(format={"pretty","html:reports/test-report"},features = "src/test/resources/Features/HomePage", glue = { "com.wix.stepDefs" }, plugin = {
 		"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html" }, monochrome = true, dryRun = false)
 public class TestRunner {
 	

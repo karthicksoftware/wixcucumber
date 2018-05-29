@@ -6,7 +6,7 @@ public class HomePageSteps {
 	
 	HomePage homePage = new HomePage();
 
-	public void open_browser(){
+	public void open_application(){
 		homePage.openApplication();
 	}
 	
